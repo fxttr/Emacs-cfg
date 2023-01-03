@@ -12,7 +12,6 @@
 (use-package posframe
   :ensure t)
 
-(add-to-list 'load-path "~/.emacs.d/lsp-bridge")
 (require 'lsp-bridge)
 (global-lsp-bridge-mode)
 
