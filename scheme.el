@@ -1,4 +1,4 @@
 (use-package geiser
-  :init
+  :config
   (setq geiser-chez-binary "scheme")
   (setq geiser-active-implementations '(chez)))

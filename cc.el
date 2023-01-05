@@ -8,7 +8,6 @@
 (setq c-default-style "cc-mode")
 (add-hook 'c-mode-common-hook 'google-set-c-style)
 
-
 ;; Formating
 (global-set-key [C-M-tab] 'clang-format-region)
 (setq clang-format-style-option "~/.clang_format")

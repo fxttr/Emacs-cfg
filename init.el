@@ -19,7 +19,12 @@
 (package-initialize)
 
 (require 'org)
-(use-package smart-mode-line)
+(require 'smart-mode-line)
+(require 'markdown-mode)
+(require 'monokai-pro-theme)
+(require 'direnv)
+(require 'beacon)
+
 (use-package smart-mode-line-powerline-theme
   :after smart-mode-line
   :config
@@ -31,8 +36,6 @@
   (:map global-map
 	("M-x" . 'smex)
 	("M-X" . 'smex-major-mode-commands)))
-(use-package markdown-mode)
-(use-package monokai-pro-theme)
 (use-package ace-window
   :bind
   (:map global-map
@@ -43,16 +46,10 @@
 	("C-c SPC" . 'ace-jump-mode)))
 (use-package dashboard
   :init (dashboard-setup-startup-hook))
-(use-package direnv
-  :config
-  (direnv-mode))
-(use-package beacon
-  :config
-  (beacon-mode))
 ;; =================================================================================
 
 ;;=============
-;; GUI settings
+;; Startup settings
 ;;=============
 (set-frame-font "Source Code Pro:size=12")
 (load-theme 'monokai-pro t)
@@ -67,6 +64,14 @@
 (global-prettify-symbols-mode +1)
 (ido-mode t)
 (winner-mode 1)
+(beacon-mode)
+(direnv-mode)
+
+;; Chill the gc
+(setq gc-cons-threshold most-positive-fixnum) 
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (setq gc-cons-threshold (expt 2 23))))
 ;; =================================================================================
 
 (defun load-conf-file (file)
@@ -76,7 +81,7 @@
 (load-conf-file "ide.el")
 (load-conf-file "rust.el")
 (load-conf-file "haskell.el")
-(load-conf-file "scheme.el")
+;; (load-conf-file "scheme.el")
 (load-conf-file "lisp.el")
 ;; (load-conf-file "ocaml.el")
 ;; (load-conf-file "ats2.el")

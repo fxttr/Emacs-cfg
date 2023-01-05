@@ -1,8 +1,9 @@
-(use-package rust-mode)
+(require 'rust-mode)
+(require 'flycheck-rust)
+
 (use-package rustic
   :config
   (setq rustic-lsp-setup-p f))
-(use-package flycheck-rust)
 (use-package cargo
         :config 
         ;; change emacs PATH o include cargo/bin

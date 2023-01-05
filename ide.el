@@ -2,21 +2,17 @@
   :init (projectile-mode +1)
   :bind
   (:map global-map
-	("C-c p" . 'projectile-command-map))
-  :ensure t)
+	("C-c p" . 'projectile-command-map)))
 
 (use-package yasnippet
-  :ensure t
   :config (yas-global-mode 1))
 
-(use-package posframe
-  :ensure t)
+(use-package posframe)
 
 (require 'lsp-bridge)
 (global-lsp-bridge-mode)
 
 (use-package ivy
-  :ensure t
   :config
   (ivy-mode)
   (setq ivy-use-virtual-buffers t)
@@ -45,70 +41,63 @@
                         ".*-autoloads\\.el\\'"
                         "[/\\]\\.emacs.d/"))
 
-(use-package neotree
-  :ensure t
+(use-package treemacs
+  :defer t
+  :init
+  (with-eval-after-load 'winum
+    (define-key winum-keymap (kbd "F8") #'treemacs-select-window))
   :config
-  (global-set-key [f8] 'neotree-toggle))
+  (progn
+    (setq treemacs-collapse-dirs                 (if treemacs-python-executable 3 0)
+          treemacs-deferred-git-apply-delay      0.5
+          treemacs-directory-name-transformer    #'identity
+          treemacs-display-in-side-window        t
+          treemacs-eldoc-display                 t
+          treemacs-file-event-delay              5000
+          treemacs-file-extension-regex          treemacs-last-period-regex-value
+          treemacs-file-follow-delay             0.2
+          treemacs-file-name-transformer         #'identity
+          treemacs-follow-after-init             t
+          treemacs-git-command-pipe              ""
+          treemacs-goto-tag-strategy             'refetch-index
+          treemacs-indentation                   2
+          treemacs-indentation-string            " "
+          treemacs-is-never-other-window         nil
+          treemacs-max-git-entries               5000
+          treemacs-missing-project-action        'ask
+          treemacs-move-forward-on-expand        nil
+          treemacs-no-png-images                 nil
+          treemacs-no-delete-other-windows       t
+          treemacs-project-follow-cleanup        nil
+          treemacs-persist-file                  (expand-file-name ".cache/treemacs-persist" user-emacs-directory)
+          treemacs-position                      'left
+          treemacs-show-cursor                   nil
+          treemacs-show-hidden-files             t
+          treemacs-silent-filewatch              nil
+          treemacs-silent-refresh                nil
+          treemacs-sorting                       'alphabetic-asc
+          treemacs-space-between-root-nodes      t
+          treemacs-tag-follow-cleanup            t
+          treemacs-tag-follow-delay              1.5
+          treemacs-width                         30
+          treemacs-workspace-switch-cleanup      nil)
+    (treemacs-follow-mode t)
+    (treemacs-filewatch-mode t)
+    (treemacs-fringe-indicator-mode t)
+    (pcase (cons (not (null (executable-find "git")))
+                 (not (null treemacs-python-executable)))
+      (`(t . t)
+       (treemacs-git-mode 'deferred))
+      (`(t . _)
+       (treemacs-git-mode 'simple))))
+  :bind
+  (:map global-map
+        ("M-0"       . treemacs-select-window)
+        ("C-x t 1"   . treemacs-delete-other-windows)
+        ("C-x t t"   . treemacs)
+        ("C-x t B"   . treemacs-bookmark)
+        ("C-x t C-t" . treemacs-find-file)
+        ("C-x t M-t" . treemacs-find-tag)))
 
-;; (use-package treemacs
-;;   :ensure t
-;;   :defer t
-;;   :init
-;;   (with-eval-after-load 'winum
-;;     (define-key winum-keymap (kbd "F8") #'treemacs-select-window))
-;;   :config
-;;   (progn
-;;     (setq treemacs-collapse-dirs                 (if treemacs-python-executable 3 0)
-;;           treemacs-deferred-git-apply-delay      0.5
-;;           treemacs-directory-name-transformer    #'identity
-;;           treemacs-display-in-side-window        t
-;;           treemacs-eldoc-display                 t
-;;           treemacs-file-event-delay              5000
-;;           treemacs-file-extension-regex          treemacs-last-period-regex-value
-;;           treemacs-file-follow-delay             0.2
-;;           treemacs-file-name-transformer         #'identity
-;;           treemacs-follow-after-init             t
-;;           treemacs-git-command-pipe              ""
-;;           treemacs-goto-tag-strategy             'refetch-index
-;;           treemacs-indentation                   2
-;;           treemacs-indentation-string            " "
-;;           treemacs-is-never-other-window         nil
-;;           treemacs-max-git-entries               5000
-;;           treemacs-missing-project-action        'ask
-;;           treemacs-move-forward-on-expand        nil
-;;           treemacs-no-png-images                 nil
-;;           treemacs-no-delete-other-windows       t
-;;           treemacs-project-follow-cleanup        nil
-;;           treemacs-persist-file                  (expand-file-name ".cache/treemacs-persist" user-emacs-directory)
-;;           treemacs-position                      'left
-;;           treemacs-show-cursor                   nil
-;;           treemacs-show-hidden-files             t
-;;           treemacs-silent-filewatch              nil
-;;           treemacs-silent-refresh                nil
-;;           treemacs-sorting                       'alphabetic-asc
-;;           treemacs-space-between-root-nodes      t
-;;           treemacs-tag-follow-cleanup            t
-;;           treemacs-tag-follow-delay              1.5
-;;           treemacs-width                         30
-;;           treemacs-workspace-switch-cleanup      nil)
-;;     (treemacs-follow-mode t)
-;;     (treemacs-filewatch-mode t)
-;;     (treemacs-fringe-indicator-mode t)
-;;     (pcase (cons (not (null (executable-find "git")))
-;;                  (not (null treemacs-python-executable)))
-;;       (`(t . t)
-;;        (treemacs-git-mode 'deferred))
-;;       (`(t . _)
-;;        (treemacs-git-mode 'simple))))
-;;   :bind
-;;   (:map global-map
-;;         ("M-0"       . treemacs-select-window)
-;;         ("C-x t 1"   . treemacs-delete-other-windows)
-;;         ("C-x t t"   . treemacs)
-;;         ("C-x t B"   . treemacs-bookmark)
-;;         ("C-x t C-t" . treemacs-find-file)
-;;         ("C-x t M-t" . treemacs-find-tag)))
-
-;; (use-package treemacs-projectile
-;;   :after treemacs projectile
-;;   :ensure t)
+(use-package treemacs-projectile
+  :after treemacs projectile)
