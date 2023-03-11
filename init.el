@@ -92,4 +92,3 @@
 
 ;; Backup-diretory and Server
 (setf backup-directory-alist '((".*" . "~/.saves/")))
-(server-start)
