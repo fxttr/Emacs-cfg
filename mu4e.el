@@ -57,12 +57,12 @@
 	,(make-mu4e-context
 	  :name "IONOS Account"
 	  :match-func (lambda (msg) (when msg
-				      (string-prefix-p "/IONOSAccount" (mu4e-message-field msg :maildir))))
+				      (string-prefix-p "/ionos" (mu4e-message-field msg :maildir))))
 	  :vars '(
-		  (mu4e-trash-folder . "/IONOSAccount/Junk")
-		  (mu4e-refile-folder . "/IONOSAccount/Archivio")
-		  (mu4e-drafts-folder . "/IONOSAccount/Drafts")
-		  (mu4e-sent-folder . "/IONOSAccount/Sent")
+		  (mu4e-trash-folder . "/ionos/Junk")
+		  (mu4e-refile-folder . "/ionos/Archivio")
+		  (mu4e-drafts-folder . "/ionos/Drafts")
+		  (mu4e-sent-folder . "/ionos/Sent")
 		  (user-mail-address . "fb@fx-ttr.de")
 		  (smtpmail-smtp-user . "fb")
 		  (smtpmail-local-domain . "fx-ttr.de")
