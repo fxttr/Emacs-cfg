@@ -76,9 +76,9 @@
 				      (string-prefix-p "/uni" (mu4e-message-field msg :maildir))))
 	  :vars '(
 		  (mu4e-trash-folder . "/uni/Trash")
-		  (mu4e-refile-folder . "/ionos/Archives")
-		  (mu4e-drafts-folder . "/ionos/Drafts")
-		  (mu4e-sent-folder . "/ionos/Sent")
+		  (mu4e-refile-folder . "/uni/Archives")
+		  (mu4e-drafts-folder . "/uni/Drafts")
+		  (mu4e-sent-folder . "/uni/Sent")
 		  (user-mail-address . "florian.buestgens@studium.fernuni-hagen.de")
 		  (smtpmail-smtp-user . "florian.buestgens")
 		  (smtpmail-local-domain . "studium.fernuni-hagen.de")
