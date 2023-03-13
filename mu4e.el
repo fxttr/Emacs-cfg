@@ -7,7 +7,7 @@
 ;; Set keybind to enter mu4
 (global-set-key (kbd "C-x t") 'mu4e)
 
-(setq mu4e-user-mail-address-list '("fb@fx-ttr.de"))
+(setq mu4e-user-mail-address-list '("fb@fx-ttr.de" "florian.buestgens@studium.fernuni-hagen.de"))
 
 ;; viewing options
 (setq mu4e-view-show-addresses t)
@@ -19,8 +19,8 @@
 (setq mu4e-confirm-quit nil)
 
 (setq mu4e-maildir-shortcuts
-      '(("/WebAccount/INBOX" . ?w)
-	("/IONOSAccount/INBOX" . ?i)
+      '(("/uni/Inbox" . ?w)
+	("/ionos/Inbox" . ?i)
 	))
 
 ;; attachments go here

@@ -79,7 +79,7 @@
   (load-file (concat (concat (getenv "HOME") "/.emacs.d/") file)))
 
 (load-conf-file "ide.el")
-(load-conf-file "rust.el")
+;; (load-conf-file "rust.el")
 (load-conf-file "haskell.el")
 (load-conf-file "scheme.el")
 (load-conf-file "lisp.el")
