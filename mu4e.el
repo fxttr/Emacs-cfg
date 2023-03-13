@@ -59,10 +59,10 @@
 	  :match-func (lambda (msg) (when msg
 				      (string-prefix-p "/ionos" (mu4e-message-field msg :maildir))))
 	  :vars '(
-		  (mu4e-trash-folder . "/ionos/Junk")
-		  (mu4e-refile-folder . "/ionos/Archivio")
-		  (mu4e-drafts-folder . "/ionos/Drafts")
-		  (mu4e-sent-folder . "/ionos/Sent")
+		  (mu4e-trash-folder . "/ionos/Papierkorb")
+		  (mu4e-refile-folder . "/ionos/Archiv")
+		  (mu4e-drafts-folder . "/ionos/Entw&APw-rfe")
+		  (mu4e-sent-folder . "/ionos/Gesendete Objekte")
 		  (user-mail-address . "fb@fx-ttr.de")
 		  (smtpmail-smtp-user . "fb")
 		  (smtpmail-local-domain . "fx-ttr.de")
@@ -70,7 +70,24 @@
 		  (smtpmail-smtp-server . "smtp.ionos.de")
 		  (smtpmail-smtp-service . 587)
 		  ))
-	))
+	,(make-mu4e-context
+	  :name "Uni Account"
+	  :match-func (lambda (msg) (when msg
+				      (string-prefix-p "/uni" (mu4e-message-field msg :maildir))))
+	  :vars '(
+		  (mu4e-trash-folder . "/uni/Trash")
+		  (mu4e-refile-folder . "/ionos/Archives")
+		  (mu4e-drafts-folder . "/ionos/Drafts")
+		  (mu4e-sent-folder . "/ionos/Sent")
+		  (user-mail-address . "florian.buestgens@studium.fernuni-hagen.de")
+		  (smtpmail-smtp-user . "florian.buestgens")
+		  (smtpmail-local-domain . "studium.fernuni-hagen.de")
+		  (smtpmail-default-smtp-server . "studium.fernuni-hagen.de")
+		  (smtpmail-smtp-server . "studium.fernuni-hagen.de")
+		  (smtpmail-smtp-service . 587)
+		  ))
+	)
+      )
 
 ;; Set how email is to be sent
 (setq send-mail-function (quote smtpmail-send-it))
