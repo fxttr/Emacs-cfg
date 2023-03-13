@@ -33,20 +33,20 @@
 ;;
 ;; NOTE: Taken from
 ;; http://cachestocaches.com/2017/3/complete-guide-email-emacs-using-mu-and-/
-(defun remove-nth-element (nth list)
-  (if (zerop nth) (cdr list)
-    (let ((last (nthcdr (1- nth) list)))
-      (setcdr last (cddr last))
-      list)))
-(setq mu4e-marks (remove-nth-element 5 mu4e-marks))
-(add-to-list 'mu4e-marks
-	     '(trash
-	       :char ("d" . "▼")
-	       :prompt "dtrash"
-	       :dyn-target (lambda (target msg) (mu4e-get-trash-folder msg))
-	       :action (lambda (docid msg target)
-			 (mu4e~proc-move docid
-					 (mu4e~mark-check-target target) "-N"))))
+;; (defun remove-nth-element (nth list)
+;;   (if (zerop nth) (cdr list)
+;;     (let ((last (nthcdr (1- nth) list)))
+;;       (setcdr last (cddr last))
+;;       list)))
+;; (setq mu4e-marks (remove-nth-element 5 mu4e-marks))
+;; (add-to-list 'mu4e-marks
+;; 	     '(trash
+;; 	       :char ("d" . "▼")
+;; 	       :prompt "dtrash"
+;; 	       :dyn-target (lambda (target msg) (mu4e-get-trash-folder msg))
+;; 	       :action (lambda (docid msg target)
+;; 			 (mu4e~proc-move docid
+;; 					 (mu4e~mark-check-target target) "-N"))))
 
 
 ;; ---------------------------------------------
