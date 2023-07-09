@@ -7,7 +7,7 @@
 ;; Set keybind to enter mu4
 (global-set-key (kbd "C-x t") 'mu4e)
 
-(setq mu4e-user-mail-address-list '("fb@fx-ttr.de" "florian.buestgens@studium.fernuni-hagen.de"))
+(setq mu4e-user-mail-address-list '("f.m.liestmann@fx-ttr.de"))
 
 ;; viewing options
 (setq mu4e-view-show-addresses t)
@@ -63,30 +63,13 @@
 		  (mu4e-refile-folder . "/ionos/Archiv")
 		  (mu4e-drafts-folder . "/ionos/Entw&APw-rfe")
 		  (mu4e-sent-folder . "/ionos/Gesendete Objekte")
-		  (user-mail-address . "fb@fx-ttr.de")
-		  (smtpmail-smtp-user . "fb")
+		  (user-mail-address . "f.m.liestmann@fx-ttr.de")
+		  (smtpmail-smtp-user . "f.m.liestmann")
 		  (smtpmail-local-domain . "fx-ttr.de")
 		  (smtpmail-default-smtp-server . "smtp.ionos.de")
 		  (smtpmail-smtp-server . "smtp.ionos.de")
 		  (smtpmail-smtp-service . 587)
 		  ))
-	,(make-mu4e-context
-	  :name "Uni Account"
-	  :match-func (lambda (msg) (when msg
-				      (string-prefix-p "/uni" (mu4e-message-field msg :maildir))))
-	  :vars '(
-		  (mu4e-trash-folder . "/uni/Trash")
-		  (mu4e-refile-folder . "/uni/Archives")
-		  (mu4e-drafts-folder . "/uni/Drafts")
-		  (mu4e-sent-folder . "/uni/Sent")
-		  (user-mail-address . "florian.buestgens@studium.fernuni-hagen.de")
-		  (smtpmail-smtp-user . "florian.buestgens")
-		  (smtpmail-local-domain . "studium.fernuni-hagen.de")
-		  (smtpmail-default-smtp-server . "studium.fernuni-hagen.de")
-		  (smtpmail-smtp-server . "studium.fernuni-hagen.de")
-		  (smtpmail-smtp-service . 587)
-		  ))
-	)
       )
 
 ;; Set how email is to be sent
