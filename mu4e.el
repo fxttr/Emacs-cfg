@@ -70,7 +70,8 @@
 		  (smtpmail-smtp-server . "smtp.ionos.de")
 		  (smtpmail-smtp-service . 587)
 		  ))
-      )
+	)
+)
 
 ;; Set how email is to be sent
 (setq send-mail-function (quote smtpmail-send-it))
