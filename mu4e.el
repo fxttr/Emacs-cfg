@@ -7,7 +7,7 @@
 ;; Set keybind to enter mu4
 (global-set-key (kbd "C-x t") 'mu4e)
 
-(setq mu4e-user-mail-address-list '("fb@fx-ttr.de"))
+(setq mu4e-user-mail-address-list '("f.m.liestmann@fx-ttr.de"))
 
 ;; viewing options
 (setq mu4e-view-show-addresses t)
@@ -19,8 +19,8 @@
 (setq mu4e-confirm-quit nil)
 
 (setq mu4e-maildir-shortcuts
-      '(("/WebAccount/INBOX" . ?w)
-	("/IONOSAccount/INBOX" . ?i)
+      '(("/uni/Inbox" . ?w)
+	("/ionos/Inbox" . ?i)
 	))
 
 ;; attachments go here
@@ -33,20 +33,20 @@
 ;;
 ;; NOTE: Taken from
 ;; http://cachestocaches.com/2017/3/complete-guide-email-emacs-using-mu-and-/
-(defun remove-nth-element (nth list)
-  (if (zerop nth) (cdr list)
-    (let ((last (nthcdr (1- nth) list)))
-      (setcdr last (cddr last))
-      list)))
-(setq mu4e-marks (remove-nth-element 5 mu4e-marks))
-(add-to-list 'mu4e-marks
-	     '(trash
-	       :char ("d" . "▼")
-	       :prompt "dtrash"
-	       :dyn-target (lambda (target msg) (mu4e-get-trash-folder msg))
-	       :action (lambda (docid msg target)
-			 (mu4e~proc-move docid
-					 (mu4e~mark-check-target target) "-N"))))
+;; (defun remove-nth-element (nth list)
+;;   (if (zerop nth) (cdr list)
+;;     (let ((last (nthcdr (1- nth) list)))
+;;       (setcdr last (cddr last))
+;;       list)))
+;; (setq mu4e-marks (remove-nth-element 5 mu4e-marks))
+;; (add-to-list 'mu4e-marks
+;; 	     '(trash
+;; 	       :char ("d" . "▼")
+;; 	       :prompt "dtrash"
+;; 	       :dyn-target (lambda (target msg) (mu4e-get-trash-folder msg))
+;; 	       :action (lambda (docid msg target)
+;; 			 (mu4e~proc-move docid
+;; 					 (mu4e~mark-check-target target) "-N"))))
 
 
 ;; ---------------------------------------------
@@ -57,20 +57,21 @@
 	,(make-mu4e-context
 	  :name "IONOS Account"
 	  :match-func (lambda (msg) (when msg
-				      (string-prefix-p "/IONOSAccount" (mu4e-message-field msg :maildir))))
+				      (string-prefix-p "/ionos" (mu4e-message-field msg :maildir))))
 	  :vars '(
-		  (mu4e-trash-folder . "/IONOSAccount/Junk")
-		  (mu4e-refile-folder . "/IONOSAccount/Archivio")
-		  (mu4e-drafts-folder . "/IONOSAccount/Drafts")
-		  (mu4e-sent-folder . "/IONOSAccount/Sent")
-		  (user-mail-address . "fb@fx-ttr.de")
-		  (smtpmail-smtp-user . "fb")
+		  (mu4e-trash-folder . "/ionos/Papierkorb")
+		  (mu4e-refile-folder . "/ionos/Archiv")
+		  (mu4e-drafts-folder . "/ionos/Entw&APw-rfe")
+		  (mu4e-sent-folder . "/ionos/Gesendete Objekte")
+		  (user-mail-address . "f.m.liestmann@fx-ttr.de")
+		  (smtpmail-smtp-user . "f.m.liestmann")
 		  (smtpmail-local-domain . "fx-ttr.de")
 		  (smtpmail-default-smtp-server . "smtp.ionos.de")
 		  (smtpmail-smtp-server . "smtp.ionos.de")
 		  (smtpmail-smtp-service . 587)
 		  ))
-	))
+	)
+)
 
 ;; Set how email is to be sent
 (setq send-mail-function (quote smtpmail-send-it))

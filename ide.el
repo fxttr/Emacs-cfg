@@ -7,11 +7,6 @@
 (use-package yasnippet
   :config (yas-global-mode 1))
 
-(use-package posframe)
-
-(require 'lsp-bridge)
-(global-lsp-bridge-mode)
-
 (use-package ivy
   :config
   (ivy-mode)
@@ -101,3 +96,41 @@
 
 (use-package treemacs-projectile
   :after treemacs projectile)
+
+(use-package lsp-mode
+  :after (direnv)
+  :commands lsp
+  :hook (((c-mode c++-mode rustic-mode haskell-mode haskell-interactive-mode) . lsp-deferred)
+	 (lsp-mode . lsp-enable-which-key-integration))
+  :bind ("C-c C-c" . #'lsp-execute-code-action)
+  :custom
+  (lsp-diagnostics-modeline-scope :project)
+  (lsp-file-watch-threshold 5000)
+  (lsp-response-timeout 2)
+  (lsp-ui-doc-mode nil)
+  (lsp-enable-file-watchers nil)
+  )
+
+(use-package lsp-ui
+  :commands lsp-ui-mode
+  :hook (lsp-mode . lsp-ui-mode)
+  :bind (:map lsp-ui-mode-map
+	      ("M-." . lsp-ui-peek-find-definitions)
+	      ("M-," . lsp-ui-peek-find-references)))
+
+(use-package lsp-ivy
+  :after (ivy lsp-mode))
+
+(use-package company-lsp
+  :disabled
+  :custom (company-lsp-enable-snippet t)
+  :after (company lsp-mode))
+
+(setq gc-cons-threshold (* 100 1024 1024)
+      read-process-output-max (* 1024 1024)
+      treemacs-space-between-root-nodes nil
+      company-idle-delay 0.0
+      company-minimum-prefix-length 1
+      lsp-idle-delay 0.1
+      lsp-ui-doc-enable t
+      lsp-headerline-breadcrumb-enable t)
