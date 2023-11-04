@@ -18,7 +18,6 @@
 (require 'package)
 (package-initialize)
 
-(require 'org)
 (require 'smart-mode-line)
 (require 'markdown-mode)
 (require 'monokai-pro-theme)
@@ -84,11 +83,11 @@
 (load-conf-file "scheme.el")
 (load-conf-file "lisp.el")
 (load-conf-file "ocaml.el")
-;; (load-conf-file "ats2.el")
+(load-conf-file "ats2.el")
 (load-conf-file "idris.el")
-(load-conf-file "mu4e.el")
 (load-conf-file "nasm.el")
 (load-conf-file "cc.el")
+(load-conf-file "org.el")
 
 ;; Backup-diretory and Server
 (setf backup-directory-alist '((".*" . "~/.saves/")))
