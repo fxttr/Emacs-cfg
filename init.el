@@ -52,7 +52,7 @@
 ;;=============
 (set-frame-font "Source Code Pro:size=12")
 (load-theme 'monokai-pro t)
-(add-hook 'find-file-hook (lambda () (linum-mode 1))) ; Line Nr
+(add-hook 'find-file-hook (lambda () (display-line-numbers-mode 1))) ; Line Nr
 (column-number-mode 1)
 (tool-bar-mode -1)                                    ; Disable Toolbar
 (menu-bar-mode -1)                                    ; Disable Menubar
@@ -78,16 +78,16 @@
   (load-file (concat (concat (getenv "HOME") "/.emacs.d/") file)))
 
 (load-conf-file "ide.el")
-;; (load-conf-file "rust.el")
-(load-conf-file "haskell.el")
-(load-conf-file "scheme.el")
+(load-conf-file "rust.el")
+;; (load-conf-file "haskell.el")
+;; (load-conf-file "scheme.el")
 (load-conf-file "lisp.el")
-(load-conf-file "ocaml.el")
-(load-conf-file "ats2.el")
-(load-conf-file "idris.el")
+;; (load-conf-file "ocaml.el")
+;; (load-conf-file "ats2.el")
 (load-conf-file "nasm.el")
 (load-conf-file "cc.el")
 (load-conf-file "org.el")
+(load-conf-file "mu4e.el")
 
 ;; Backup-diretory and Server
 (setf backup-directory-alist '((".*" . "~/.saves/")))
