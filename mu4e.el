@@ -19,8 +19,7 @@
 (setq mu4e-confirm-quit nil)
 
 (setq mu4e-maildir-shortcuts
-      '(("/uni/Inbox" . ?w)
-	("/ionos/Inbox" . ?i)
+      '(("/ionos/Inbox" . ?i)
 	))
 
 ;; attachments go here
@@ -64,14 +63,13 @@
 		  (mu4e-drafts-folder . "/ionos/Entw&APw-rfe")
 		  (mu4e-sent-folder . "/ionos/Gesendete Objekte")
 		  (user-mail-address . "f.m.liestmann@fx-ttr.de")
-		  (smtpmail-smtp-user . "f.m.liestmann")
-		  (smtpmail-local-domain . "fx-ttr.de")
-		  (smtpmail-default-smtp-server . "smtp.ionos.de")
-		  (smtpmail-smtp-server . "smtp.ionos.de")
-		  (smtpmail-smtp-service . 587)
 		  ))
 	)
 )
 
 ;; Set how email is to be sent
-(setq send-mail-function (quote smtpmail-send-it))
+(setq sendmail-program "msmtp"
+      send-mail-function 'smtpmail-send-it
+      message-sendmail-f-is-evil t
+      message-sendmail-extra-arguments '("--read-envelope-from")
+      message-send-mail-function 'message-send-mail-with-sendmail)
