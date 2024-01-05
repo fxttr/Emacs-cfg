@@ -32,20 +32,20 @@
 ;;
 ;; NOTE: Taken from
 ;; http://cachestocaches.com/2017/3/complete-guide-email-emacs-using-mu-and-/
-;; (defun remove-nth-element (nth list)
-;;   (if (zerop nth) (cdr list)
-;;     (let ((last (nthcdr (1- nth) list)))
-;;       (setcdr last (cddr last))
-;;       list)))
-;; (setq mu4e-marks (remove-nth-element 5 mu4e-marks))
-;; (add-to-list 'mu4e-marks
-;; 	     '(trash
-;; 	       :char ("d" . "▼")
-;; 	       :prompt "dtrash"
-;; 	       :dyn-target (lambda (target msg) (mu4e-get-trash-folder msg))
-;; 	       :action (lambda (docid msg target)
-;; 			 (mu4e~proc-move docid
-;; 					 (mu4e~mark-check-target target) "-N"))))
+(defun remove-nth-element (nth list)
+   (if (zerop nth) (cdr list)
+     (let ((last (nthcdr (1- nth) list)))
+       (setcdr last (cddr last))
+       list)))
+(setq mu4e-marks (remove-nth-element 5 mu4e-marks))
+ (add-to-list 'mu4e-marks
+ 	     '(trash
+ 	       :char ("d" . "▼")
+ 	       :prompt "dtrash"
+ 	       :dyn-target (lambda (target msg) (mu4e-get-trash-folder msg))
+ 	       :action (lambda (docid msg target)
+ 			 (mu4e~proc-move docid
+ 					 (mu4e~mark-check-target target) "-N"))))
 
 
 ;; ---------------------------------------------
@@ -58,18 +58,17 @@
 	  :match-func (lambda (msg) (when msg
 				      (string-prefix-p "/ionos" (mu4e-message-field msg :maildir))))
 	  :vars '(
-		  (mu4e-trash-folder . "/ionos/Trash")
-		  (mu4e-refile-folder . "/ionos/Archive")
-		  (mu4e-drafts-folder . "/ionos/Drafts")
-		  (mu4e-sent-folder . "/ionos/Sent")
+		  (mu4e-trash-folder . "/ionos/Papierkorb")
+		  (mu4e-refile-folder . "/ionos/Archiv")
+		  (mu4e-drafts-folder . "/ionos/Entw&APw-rfe")
+		  (mu4e-sent-folder . "/ionos/Gesendete Objekte")
 		  (user-mail-address . "f.m.liestmann@fx-ttr.de")
 		  ))
 	)
 )
 
 ;; Set how email is to be sent
-(setq sendmail-program "msmt"p
-
+(setq sendmail-program "msmt"
       send-mail-function 'smtpmail-send-it
       message-sendmail-f-is-evil t
       message-sendmail-extra-arguments '("--read-envelope-from")
