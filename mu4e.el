@@ -68,7 +68,8 @@
 )
 
 ;; Set how email is to be sent
-(setq sendmail-program "msmt"
+(setq sendmail-program "msmt"p
+
       send-mail-function 'smtpmail-send-it
       message-sendmail-f-is-evil t
       message-sendmail-extra-arguments '("--read-envelope-from")
