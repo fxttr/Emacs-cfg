@@ -58,17 +58,18 @@
 	  :match-func (lambda (msg) (when msg
 				      (string-prefix-p "/ionos" (mu4e-message-field msg :maildir))))
 	  :vars '(
-		  (mu4e-trash-folder . "/ionos/Papierkorb")
-		  (mu4e-refile-folder . "/ionos/Archiv")
-		  (mu4e-drafts-folder . "/ionos/Entw&APw-rfe")
-		  (mu4e-sent-folder . "/ionos/Gesendete Objekte")
+		  (mu4e-trash-folder . "/ionos/Trash")
+		  (mu4e-refile-folder . "/ionos/Archive")
+		  (mu4e-drafts-folder . "/ionos/Drafts")
+		  (mu4e-sent-folder . "/ionos/Sent")
 		  (user-mail-address . "f.m.liestmann@fx-ttr.de")
 		  ))
 	)
 )
 
 ;; Set how email is to be sent
-(setq sendmail-program "msmtp"
+(setq sendmail-program "msmt"p
+
       send-mail-function 'smtpmail-send-it
       message-sendmail-f-is-evil t
       message-sendmail-extra-arguments '("--read-envelope-from")
